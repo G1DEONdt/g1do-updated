@@ -1,0 +1,159 @@
+:root {
+    --main-colour: #0f2f47;
+    --bg-colour: #7e878f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* -------------------------------------- Sidebar -------------------------------------------*/
+
+.menu {
+    background-color: var(--main-colour);
+    flex: 1;
+    min-width: 360px;
+    padding: 28px;
+}
+
+h1 {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.project-header h2 {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.project-header button {
+    padding: 0px 24px;
+}
+
+.project-header input {
+    width: 100%;
+    padding: 4px;
+}
+.menu hr {
+    margin: 4px auto 12px auto;
+    width: 88%;
+}
+
+.project-container {
+    margin: 0 auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.project {
+    border-radius: 12px;
+    padding: 4px 12px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project h3 {
+    font-size: 0.9rem;
+}
+
+.project button {
+    padding: 4px 8px 4px 16px;
+    border: none;
+    color: white;
+}
+
+.project button:hover {
+    cursor: pointer;
+    color: black;
+}
+
+
+/* ----------------------------------- Content Window -----------------------------------*/ 
+
+.content {
+    background-color: var(--bg-colour);
+    flex: 5;
+}
+
+.content h2 {
+    font-size: 3em;
+    text-align: center;
+    margin: 28px 0px;
+}
+
+.todo-container {
+    margin: 0 auto;
+    max-width: 740px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo {
+    width: 100%;
+    min-height: 64px;
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.todo .check {
+    align-self: center;
+    background-color: var(--bg-colour);
+    margin: 0 24px;
+    padding: 8px 8px;
+    border-radius: 4px;
+}
+
+.todo .check:hover {
+    cursor: pointer;
+}
+
+.todo .todo-content {
+    flex: 10;   
+}
+
+.todo-content h3 {
+    font-size: 1.5rem;
+}
+
+.todo-content p {
+    font-size: 0.9rem;
+}
+
+.todo .delete {
+    padding: 16px 8px;
+    font-size: 1.2rem;
+    border: none;
+    flex: 1;
+}
+
+.todo .delete:hover {
+    cursor: pointer;
+}
+
+.todo.complete, .todo button {
+    opacity: 0.3;
+}
