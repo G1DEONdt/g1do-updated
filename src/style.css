@@ -76,13 +76,13 @@ h1 {
     font-size: 0.9rem;
 }
 
-.project button {
+.project .add-project {
     padding: 4px 8px 4px 16px;
     border: none;
     color: white;
 }
 
-.project button:hover {
+.project .add-project:hover {
     cursor: pointer;
     color: black;
 }
@@ -93,6 +93,12 @@ h1 {
 .content {
     background-color: var(--bg-colour);
     flex: 5;
+}
+
+.content .add-todo {
+    display: block;
+    margin: 28px auto;
+    padding: 12px 24px;
 }
 
 .content h2 {
