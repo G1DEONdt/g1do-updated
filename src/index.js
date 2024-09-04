@@ -16,10 +16,7 @@ addTodoButton.addEventListener("click", () => {
     const notes = prompt("Enter todo notes: ");
 
     const todo = new Todo(1, title, description, duedate, notes);
-    console.log(todo);
     project1.addTodo(todo);
-
-    console.log(project1.project);
 
     renderTodo(project1);
 })

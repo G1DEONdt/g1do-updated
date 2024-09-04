@@ -21,8 +21,6 @@ export function renderTodo(project) {
         title.innerText = project.project[item].name;
         due.innerText = project.project[item].dueDate;
 
-        console.log(item);
-
         // Append elements
         todo.appendChild(check);
         todo.appendChild(content);
