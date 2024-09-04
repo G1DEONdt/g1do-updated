@@ -1,6 +1,7 @@
 const container = document.querySelector('.todo-container');
 
 export function renderTodo(project) {
+    resetContainer();
     for (let item in project.project) {
         // Create Elements
         const todo = document.createElement('div');
@@ -32,4 +33,8 @@ export function renderTodo(project) {
 
         container.appendChild(todo);
     }
+}
+
+function resetContainer () {
+    container.innerHTML = "";
 }
