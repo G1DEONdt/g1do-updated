@@ -23,13 +23,13 @@ const submitButton = document.querySelector(".submit");
 
 
 
-// Main 
-// const defaultProject = new Project("Home");
-// addToFolder(defaultProject);
-// renderProjects();
-
+    
 (function pageLoad () {
     loadData();
+    if (getFolder().length <= 0) {
+        const defaultProject = new Project("Home");
+        addToFolder(defaultProject);
+    }
     update();
 })();
 
