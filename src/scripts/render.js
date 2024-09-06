@@ -1,4 +1,5 @@
-import { getFolder, removeFromFolder, selectedProject, setSelectedProject } from "./folder";
+import { saveData } from "./data";
+import { getFolder, getSelectedProject, getSelectedProjectIndex, removeFromFolder, selectedProject, setSelectedProject } from "./folder";
 
 const projectContainer = document.querySelector(".project-container");
 const todoContainer = document.querySelector('.todo-container');
@@ -9,9 +10,7 @@ const contentHeader = document.querySelector(".content-header");
 export function renderProjects() {
     const folder = getFolder();
     resetContainer(projectContainer);
-    if (folder.length > 0){
-        contentHeader.innerText = folder[selectedProject].title;
-    } 
+    contentHeader.innerText = folder[selectedProject].title;
 
     for (let item in folder) {
         // Create Elements
@@ -43,8 +42,22 @@ export function renderProjects() {
         })
 
         deleteButton.addEventListener("click", () => {
-            removeFromFolder(item);
-            renderProjects();
+            if (getFolder().length > 1) {
+                removeFromFolder(item);
+                
+                if (getSelectedProjectIndex() == item && item > 0){
+                    setSelectedProject(getSelectedProjectIndex() - 1);
+                } else {
+                    setSelectedProject(0);
+                }
+
+                renderProjects();
+                renderTodo(getSelectedProject());
+
+            } else {
+                alert("Must have at least one folder");
+            }
+            saveData(folder);
         })
     }
 }
@@ -96,11 +109,13 @@ export function renderTodo(project) {
         check.addEventListener("click", () => {
             project.removeTodo(item);
             renderTodo(project);
+            saveData(getFolder());
         })
 
         deleteButton.addEventListener("click", () => {
             project.removeTodo(item);
             renderTodo(project);
+            saveData(getFolder());
         })
     }
 }

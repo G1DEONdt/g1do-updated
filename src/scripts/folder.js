@@ -5,6 +5,10 @@ export function getSelectedProject () {
     return folder[selectedProject];
 }
 
+export function getSelectedProjectIndex() {
+    return selectedProject;
+}
+
 export function setSelectedProject (index) {
     selectedProject = index;
 }

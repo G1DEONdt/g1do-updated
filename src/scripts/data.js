@@ -9,24 +9,33 @@ export function saveData (folder) {
 
 export function loadData () {
     const stringified = localStorage.getItem("data");
-    const serialised = JSON.parse(stringified);
-
-    for (let index in serialised) {
-        const newProject = new Project(serialised[index].title);
-        const array = serialised[index].project;
-
-        for (let todo in array) {
-            const newTodo = new Todo(
-                array[todo].name,
-                array[todo].description,
-                array[todo].dueDate,
-                array[todo].notes
-            )
-
-            newProject.addTodo(newTodo);
+    
+    try {
+        const serialised = JSON.parse(stringified);
+        for (let index in serialised) {
+            const newProject = new Project(serialised[index].title);
+            const array = serialised[index].project;
+    
+            for (let todo in array) {
+                const newTodo = new Todo(
+                    array[todo].name,
+                    array[todo].description,
+                    array[todo].dueDate,
+                    array[todo].notes
+                )
+    
+                newProject.addTodo(newTodo);
+            }
+    
+            addToFolder(newProject);
         }
-
-        addToFolder(newProject);
+    } 
+    catch (error) {
+        return;
     }
+
+    
+
+
 }
 

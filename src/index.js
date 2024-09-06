@@ -56,7 +56,6 @@ createProject.addEventListener("click", () => {
     }
 
     addToFolder(newProject);
-    // renderProjects();
     update();
 })
 
