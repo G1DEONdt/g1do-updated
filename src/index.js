@@ -1,15 +1,54 @@
+import { addToFolder, getFolder, getSelectedProject } from './scripts/folder';
 import { Project } from './scripts/project';
-import { renderTodo } from './scripts/render';
+import { renderProjects, renderTodo } from './scripts/render';
 import { Todo } from './scripts/todo';
 import './style.css';
 
+let projects = getFolder();
+
+//Side Bar
+const addProject = document.querySelector(".add-project");
+const createProject = document.querySelector(".create");
+const projectDefault = document.querySelector(".project-default");
+const projectAdd = document.querySelector(".project-add");
+const projectName = document.querySelector("#project-name");
+
+// Form
 const formContainer = document.querySelector(".form-container");
 const form = document.querySelector(".form");
 const addTodoButton = document.querySelector('.add-todo');
 const cancelButton = document.querySelector('.cancel');
 const submitButton = document.querySelector(".submit");
 
-const project1 = new Project();
+
+
+// Main 
+const defaultProject = new Project("Home");
+addToFolder(defaultProject);
+renderProjects();
+
+
+// Event Listeners 
+addProject.addEventListener("click", () => {
+    projectDefault.classList.add("hidden");
+    projectAdd.classList.remove("hidden");
+})
+
+createProject.addEventListener("click", () => {
+    projectDefault.classList.remove("hidden");
+    projectAdd.classList.add("hidden");
+
+    const newProject = new Project(projectName.value);
+    projectName.value = ""
+
+    if (newProject.title === "") {
+        newProject.setTitle("Unnamed Project");
+    }
+
+    addToFolder(newProject);
+    renderProjects();
+    console.log(getFolder());
+})
 
 addTodoButton.addEventListener("click", () => {
     formContainer.classList.add("active");
@@ -29,10 +68,10 @@ submitButton.addEventListener("click", (e) => {
     const notes = document.querySelector('#notes').value;
 
     const todo = new Todo(1, title, description, date, notes);
-    project1.addTodo(todo);
+    getSelectedProject().addTodo(todo);
 
     form.reset();
     formContainer.classList.remove("active");
 
-    renderTodo(project1);
+    renderTodo(getSelectedProject());
 })

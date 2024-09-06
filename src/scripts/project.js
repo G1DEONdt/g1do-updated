@@ -1,13 +1,17 @@
-import { Todo } from "./todo"
+export function Project (title) {
+    this.title = title;
 
-export function Project () {
     this.project = [];
+
+    this.setTitle = (title) => {
+        this.title = title;
+    }
 
     this.addTodo = (todo) => {
         this.project.push(todo);
     }
 
-    this.removeTodo = (todoId) => {
-        this.project.splice(this.project, todoId);
+    this.removeTodo = (index) => {
+        this.project.splice(index, 1);
     }
 }
