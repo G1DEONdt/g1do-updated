@@ -109,6 +109,7 @@ function renderTodoItem (project, todo, index) {
     const todoExpanded = document.querySelector(".todo-expanded");
     const todoExpandedClose = document.querySelector(".todo-expanded-close");
     const title = document.querySelector(".window-title");
+    const windowClose = document.querySelector(".window-close");
     const description = document.querySelector(".window-description-text");
     const due = document.querySelector(".window-due-text");
     const notes = document.querySelector(".window-notes-text");
@@ -129,6 +130,10 @@ function renderTodoItem (project, todo, index) {
     remove.addEventListener("click", () => {
         project.removeTodo(index);
         renderTodo(project);
+        resetElements();
+    })
+
+    windowClose.addEventListener("click", () => {
         resetElements();
     })
 

@@ -1,3 +1,4 @@
+import { loadData, saveData } from './scripts/data';
 import { addToFolder, getFolder, getSelectedProject } from './scripts/folder';
 import { Project } from './scripts/project';
 import { renderProjects, renderTodo } from './scripts/render';
@@ -23,9 +24,16 @@ const submitButton = document.querySelector(".submit");
 
 
 // Main 
-const defaultProject = new Project("Home");
-addToFolder(defaultProject);
-renderProjects();
+// const defaultProject = new Project("Home");
+// addToFolder(defaultProject);
+// renderProjects();
+
+(function pageLoad () {
+    loadData();
+    update();
+})();
+
+
 
 
 // Event Listeners 
@@ -34,6 +42,8 @@ addProject.addEventListener("click", () => {
     projectAdd.classList.remove("hidden");
 })
 
+
+// Create Project 
 createProject.addEventListener("click", () => {
     projectDefault.classList.remove("hidden");
     projectAdd.classList.add("hidden");
@@ -46,8 +56,8 @@ createProject.addEventListener("click", () => {
     }
 
     addToFolder(newProject);
-    renderProjects();
-    console.log(getFolder());
+    // renderProjects();
+    update();
 })
 
 addTodoButton.addEventListener("click", () => {
@@ -60,6 +70,9 @@ cancelButton.addEventListener("click", (e) => {
     formContainer.classList.remove("active");
 })
 
+
+// Create Todo
+
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
     const title = document.querySelector("#title").value;
@@ -67,11 +80,18 @@ submitButton.addEventListener("click", (e) => {
     const date = document.querySelector('#date').value;
     const notes = document.querySelector('#notes').value;
 
-    const todo = new Todo(1, title, description, date, notes);
+    const todo = new Todo(title, description, date, notes);
     getSelectedProject().addTodo(todo);
 
     form.reset();
     formContainer.classList.remove("active");
 
-    renderTodo(getSelectedProject());
+    // renderTodo(getSelectedProject());
+    update();
 })
+
+function update() {
+    renderProjects();
+    renderTodo(getSelectedProject());
+    saveData(getFolder());
+}
